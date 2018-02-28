@@ -9,6 +9,7 @@ After add-on:
 ## Release Notes
 ### v1.3
 * added empty line between Notes/Preconditions/Steps
+* fixed bug: Preview shown also in administration
 * changed permissions
 
 ### v1.2
