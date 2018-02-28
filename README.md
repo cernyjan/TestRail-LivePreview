@@ -7,14 +7,18 @@ After add-on:
 ![after](After.png)
 
 ## Release Notes
+### v1.3
+* added empty line between Notes/Preconditions/Steps
+* changed permissions
+
 ### v1.2
 * minor bug fix
 
 ## Add-on for FireFox
-[TestRail LivePreview v1.2](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
+[TestRail LivePreview v1.3](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
 
 ## Add-on for Chrome
-* download file [TestRail LivePreview v1.2](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-1.2-an+fx.xpi)
+* download file [TestRail LivePreview v1.3](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-1.3-an+fx.xpi)
 * extract it on the file system
 * open Extensions page in browser
 * click the “Developer mode” checkbox to activate it
