@@ -28,7 +28,6 @@ $( document ).ready(function() {
 			'<p style="display: inline-block; vertical-align: middle">Test Case Preview</p>' + '</div><br /><br /><br /><br />');
 		
 		$('#previewBtn').click(function(){
-			if ($('#livePreview').length == 0){
 				var notes = $('#custom_notes').val();
 				var preconditions = $('#custom_preconds').val();
 				var steps = "<table style='color:#E6E1DC'><tr><th></th><th style='border-bottom: 1px solid #E6E1DC'>Step</th><th style='border-bottom: 1px solid #E6E1DC'>Expected Result</th></tr>";
@@ -40,31 +39,34 @@ $( document ).ready(function() {
 				steps = steps + "</table>";
 				
 				$("#return").hide();
+				if ($('#livePreview').length == 0){
+					$('body').prepend("<div id='livePreview' style='background-color:#232323'><iframe id='livePreviewIframe' width='100%' />\
+						<p><input type='button' value='Close preview' id='closeLivePreview' /></p></div>");
 
-				$('body').prepend("<div id='livePreview' style='background-color:#232323'><iframe id='livePreviewIframe' width='100%' />\
-					<p><input type='button' value='Close preview' id='closeLivePreview' /></p></div>");
-				
-				$('#closeLivePreview').click(function(){
-					$('#livePreview').remove();
-					$("#return").show();
-					scrollTo($( $("#previewBtn") ));
-				});
-				
-				var iframe = document.getElementById('livePreviewIframe'),
-				    iframedoc = iframe.contentDocument || iframe.contentWindow.document;
-				iframedoc.body.innerHTML = "<div style='color:#E6E1DC'>Notes<hr>"
+					$('#closeLivePreview').click(function(){
+						$('#livePreview').remove();
+						$("#return").show();
+						scrollTo($( $("#previewBtn") ));
+					});
+				}				
+
+				var iframe = document.getElementById('livePreviewIframe');
+				iframe = iframe.contentWindow || ( iframe.contentDocument.document || iframe.contentDocument);
+				iframe.document.open();
+				iframe.document.write("<div style='color:#E6E1DC'>Notes<hr>"
 					+ micromarkdown.parse(notes) +
 					"<br /><br />\
 					Preconditions<hr>"
 					+ micromarkdown.parse(preconditions) +
 					"<br /><br />\
 					Steps<hr>"
-					+ steps + "</div>";
+					+ steps + "</div>");
+				iframe.document.close();
+
 				var cont = $('#livePreviewIframe').contents().find("body").height();
 				$('#livePreviewIframe').css('height',cont+20  + "px");		
-				
-				scrollTo($( $("#livePreview") ));		
-			}
+					
+				scrollTo($( $("#livePreview") ));
 		});	
 	}
 });
