@@ -28,45 +28,44 @@ $( document ).ready(function() {
 			'<p style="display: inline-block; vertical-align: middle">Test Case Preview</p>' + '</div><br /><br /><br /><br />');
 		
 		$('#previewBtn').click(function(){
-				var notes = $('#custom_notes').val();
-				var preconditions = $('#custom_preconds').val();
-				var steps = "<table style='color:#E6E1DC'><tr><th></th><th style='border-bottom: 1px solid #E6E1DC'>Step</th><th style='border-bottom: 1px solid #E6E1DC'>Expected Result</th></tr>";
-				$('.steps.steps-control').children('tbody').children('tr').each(function( index ) {
-					var step = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-content').find('textarea').val();
-					var expected = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-expected').find('textarea').val();
-					steps = steps + "<tr><td>"+(index+1)+".</td><td style='border-bottom: 1px solid #E6E1DC'>"+micromarkdown.parse(step)+"</td><td style='border-bottom: 1px solid #E6E1DC'>"+micromarkdown.parse(expected)+"</td></tr>";
-				});
-				steps = steps + "</table>";
+			$("#return").hide();
+			$('#livePreview').remove();
 				
-				$("#return").hide();
-				if ($('#livePreview').length == 0){
-					$('body').prepend("<div id='livePreview' style='background-color:#232323'><iframe id='livePreviewIframe' width='100%' />\
-						<p><input type='button' value='Close preview' id='closeLivePreview' /></p></div>");
-
-					$('#closeLivePreview').click(function(){
-						$('#livePreview').remove();
-						$("#return").show();
-						scrollTo($( $("#previewBtn") ));
-					});
-				}				
-
-				var iframe = document.getElementById('livePreviewIframe');
-				iframe = iframe.contentWindow || ( iframe.contentDocument.document || iframe.contentDocument);
-				iframe.document.open();
-				iframe.document.write("<div style='color:#E6E1DC'>Notes<hr>"
-					+ micromarkdown.parse(notes) +
-					"<br /><br />\
-					Preconditions<hr>"
-					+ micromarkdown.parse(preconditions) +
-					"<br /><br />\
-					Steps<hr>"
-					+ steps + "</div>");
-				iframe.document.close();
-
-				var cont = $('#livePreviewIframe').contents().find("body").height();
-				$('#livePreviewIframe').css('height',cont+20  + "px");		
+			var notes = $('#custom_notes').val();
+			var preconditions = $('#custom_preconds').val();
+			var steps = "<table style='color:#E6E1DC;'><tr><th></th><th style='border-bottom: 1px solid #E6E1DC;'>Step</th><th style='border-bottom: 1px solid #E6E1DC;'>Expected Result</th></tr>";
+			$('.steps.steps-control').children('tbody').children('tr').each(function( index ) {
+				var step = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-content').find('textarea').val();
+				var expected = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-expected').find('textarea').val();
+				steps = steps + "<tr><td>"+(index+1)+".</td><td style='border-bottom: 1px solid #E6E1DC;'>"+micromarkdown.parse(step)+"</td><td style='border-bottom: 1px solid #E6E1DC;'>"+micromarkdown.parse(expected)+"</td></tr>";
+			});
+			steps = steps + "</table>";
+											
+			var content = "<div id='ifc' style='color:#E6E1DC;'>Notes<hr>"
+				+ micromarkdown.parse(notes) +
+				"<br /><br />\
+				Preconditions<hr>"
+				+ micromarkdown.parse(preconditions) +
+				"<br /><br />\
+				Steps<hr>"
+				+ steps + "</div>";
+				
+	        $('body').prepend("<div id='livePreview' style='background-color:#232323;'><iframe id=\"livePreviewIframe\" width=\"100%\" srcdoc=\""+ content + "\"></iframe>\
+				<p><input type='button' value='Close preview' id='closeLivePreview' /></p></div>");
 					
-				scrollTo($( $("#livePreview") ));
+			$('#closeLivePreview').click(function(){
+				$('#livePreview').remove();
+				$("#return").show();
+				scrollTo($( $("#previewBtn") ));
+			});
+					
+			var iframe = document.getElementById('livePreviewIframe');
+            iframe.onload = function() {
+				var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+				$('#livePreviewIframe').css('height',iframeDocument.firstChild.offsetHeight+20  + "px");
+			};
+			scrollTo($( $("#livePreview") ));			
 		});	
 	}
 });
+

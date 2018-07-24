@@ -7,6 +7,9 @@ After add-on:
 ![after](After.png)
 
 ## Release Notes
+### v2.2
+* fixed bug: Does not work in FF 59.0.2+
+
 ### v2.1
 * fixed bug: Does not work in FF 59.0.2+
 
@@ -24,10 +27,10 @@ After add-on:
 * minor bug fix
 
 ## Add-on for FireFox
-[TestRail LivePreview v2.1](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
+[TestRail LivePreview v2.2](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
 
 ## Add-on for Chrome
-* download file [TestRail LivePreview v2.1](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-2.1-an+fx.xpi)
+* download file [TestRail LivePreview v2.2](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-2.2-an+fx.xpi)
 * extract it on the file system
 * open Extensions page in browser
 * click the “Developer mode” checkbox to activate it
