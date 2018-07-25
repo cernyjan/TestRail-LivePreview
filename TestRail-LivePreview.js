@@ -20,6 +20,14 @@ $( document ).ready(function() {
 		    }, 500);
 		}
 
+		function toMicromarkdown(inputList) {
+			var md = "";
+			for (var i = 0; i < inputList.length; i++) {
+				md = md + micromarkdown.parse(inputList[i]) + "<br />";
+			}
+			return md;
+		}
+
 		var src = chrome.extension.getURL("icons/preview-48.png");
 		$('.content-inner').append('<br /><div id="previewBtn" class="button button-left" style="height: auto;padding-left:8px;">' + 
 			'<img src="' + 
@@ -31,21 +39,28 @@ $( document ).ready(function() {
 			$("#return").hide();
 			$('#livePreview').remove();
 				
-			var notes = $('#custom_notes').val();
-			var preconditions = $('#custom_preconds').val();
-			var steps = "<table style='color:#E6E1DC;'><tr><th></th><th style='border-bottom: 1px solid #E6E1DC;'>Step</th><th style='border-bottom: 1px solid #E6E1DC;'>Expected Result</th></tr>";
+			var notesList = $('#custom_notes').val().split("\n");
+			var notes = toMicromarkdown(notesList);
+			
+			var preconditionsList = $('#custom_preconds').val().split("\n");
+			var preconditions = toMicromarkdown(preconditionsList);
+						
+			var stepsHeader = "<table style='color:#E6E1DC;'><tr><th></th><th style='border-bottom: 1px solid #E6E1DC;'>Step</th><th style='border-bottom: 1px solid #E6E1DC;'>Expected Result</th></tr>";
+			var steps = "";
 			$('.steps.steps-control').children('tbody').children('tr').each(function( index ) {
-				var step = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-content').find('textarea').val();
-				var expected = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-expected').find('textarea').val();
-				steps = steps + "<tr><td>"+(index+1)+".</td><td style='border-bottom: 1px solid #E6E1DC;'>"+micromarkdown.parse(step)+"</td><td style='border-bottom: 1px solid #E6E1DC;'>"+micromarkdown.parse(expected)+"</td></tr>";
+				var stepList = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-content').find('textarea').val().split("\n");
+				var expectedList = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-expected').find('textarea').val().split("\n");
+				var step = toMicromarkdown(stepList);
+				var expected = toMicromarkdown(expectedList);
+				steps = steps + "<tr><td>"+(index+1)+".</td><td style='border-bottom: 1px solid #E6E1DC;'>"+step+"</td><td style='border-bottom: 1px solid #E6E1DC;'>"+expected+"</td></tr>";
 			});
-			steps = steps + "</table>";
+			steps = stepsHeader + steps + "</table>";
 											
 			var content = "<div id='ifc' style='color:#E6E1DC;'>Notes<hr>"
-				+ micromarkdown.parse(notes) +
+				+ notes +
 				"<br /><br />\
 				Preconditions<hr>"
-				+ micromarkdown.parse(preconditions) +
+				+ preconditions +
 				"<br /><br />\
 				Steps<hr>"
 				+ steps + "</div>";
@@ -68,4 +83,3 @@ $( document ).ready(function() {
 		});	
 	}
 });
-
