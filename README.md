@@ -7,6 +7,9 @@ After add-on:
 ![after](After.png)
 
 ## Release Notes
+### v2.4
+* fixed bug: Links are not shown in preview
+
 ### v2.3
 * fixed bug: Multiline TC step is in one line in Preview
 
@@ -30,10 +33,10 @@ After add-on:
 * minor bug fix
 
 ## Add-on for FireFox
-[TestRail LivePreview v2.3](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
+[TestRail LivePreview v2.4](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
 
 ## Add-on for Chrome
-* download file [TestRail LivePreview v2.3](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-2.3-an+fx.xpi)
+* download file [TestRail LivePreview v2.4](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-2.4-an+fx.xpi)
 * extract it on the file system
 * open Extensions page in browser
 * click the “Developer mode” checkbox to activate it
