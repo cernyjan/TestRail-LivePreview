@@ -447,17 +447,17 @@ $( document ).ready(function() {
 			$("#return").hide();
 			$('#livePreview').remove();
 				
-			var notesList = $('#custom_notes').val().split("\n");
+			var notesList = $('#custom_notes').val().replace(/"/g, "'").split("\n");
 			var notes = toMicromarkdown(notesList);
 			
-			var preconditionsList = $('#custom_preconds').val().split("\n");
+			var preconditionsList = $('#custom_preconds').val().replace(/"/g, "'").split("\n");
 			var preconditions = toMicromarkdown(preconditionsList);
 						
 			var stepsHeader = "<table style='color:#E6E1DC;'><tr><th></th><th style='border-bottom: 1px solid #E6E1DC;'>Step</th><th style='border-bottom: 1px solid #E6E1DC;'>Expected Result</th></tr>";
 			var steps = "";
 			$('.steps.steps-control').children('tbody').children('tr').each(function( index ) {
-				var stepList = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-content').find('textarea').val().split("\n");
-				var expectedList = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-expected').find('textarea').val().split("\n");
+				var stepList = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-content').find('textarea').val().replace(/"/g, "'").split("\n");
+				var expectedList = $( this ).children('td:nth-child(2)').find('.step-text-box.step-text-expected').find('textarea').val().replace(/"/g, "'").split("\n");
 				var step = toMicromarkdown(stepList);
 				var expected = toMicromarkdown(expectedList);
 				steps = steps + "<tr><td>"+(index+1)+".</td><td style='border-bottom: 1px solid #E6E1DC;'>"+step+"</td><td style='border-bottom: 1px solid #E6E1DC;'>"+expected+"</td></tr>";

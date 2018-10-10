@@ -2,7 +2,7 @@
   "description": "Live preview of Test Case",
   "manifest_version": 2,
   "name": "TestRail LivePreview",
-  "version": "2.4",
+  "version": "2.5",
   "homepage_url": "https://github.com/cernyjan/TestRail-LivePreview",
   "icons": {
     "48": "icons/preview-48.png"

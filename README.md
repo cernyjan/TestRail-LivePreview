@@ -1,12 +1,15 @@
 # TestRail LivePreview
 This add-on injects JavaScript into TestRail web pages for Live preview of Test Case. 
 
-Compatible with TestRail *5.5.0.3735* and lower.
+Compatible with TestRail *5.5.1.3746* and lower.
 
 After add-on:
 ![after](After.png)
 
 ## Release Notes
+### v2.5
+* fixed bug: Quotation marks are not shown in preview 
+
 ### v2.4
 * fixed bug: Links are not shown in preview
 
@@ -33,10 +36,10 @@ After add-on:
 * minor bug fix
 
 ## Add-on for FireFox
-[TestRail LivePreview v2.4](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
+[TestRail LivePreview v2.5](https://addons.mozilla.org/cs/firefox/addon/testrail-livepreview/)
 
 ## Add-on for Chrome
-* download file [TestRail LivePreview v2.4](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-2.4-an+fx.xpi)
+* download file [TestRail LivePreview v2.5](https://github.com/cernyjan/TestRail-LivePreview/blob/master/testrail_livepreview-2.5-an+fx.xpi)
 * extract it on the file system
 * open Extensions page in browser
 * click the “Developer mode” checkbox to activate it
